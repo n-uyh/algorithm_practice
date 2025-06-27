@@ -10,16 +10,17 @@ public class Main {
         System.out.println(lcm(n,m));
     }
 
+    // 최대공약수
     public static int gcd(int a, int b) {
         int mod = a % b;
         if (mod != 0) {
-            gcd(b, mod);
+            return gcd(b, mod);
         }
-        return mod;
+        return b;
     }
 
+    // 최소공배수 = a * b / 최대공약수
     public static int lcm(int a, int b) {
-        int gcd = a >= b ? gcd(a,b) : gcd(b,a);
-        return (a*b)/gcd;
+        return (a*b)/gcd(a,b);
     }
 }
