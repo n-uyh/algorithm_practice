@@ -14,10 +14,17 @@ public class Main {
     }
 
     public static boolean checkCondition(int n) {
-        return n % 3 == 0 || isContains(n+"");
+        return n % 3 == 0 || condition2(n);
     }
 
-    public static boolean isContains(String target) {
-        return target.indexOf('3') > -1 || target.indexOf('6') > -1 || target.indexOf('9') > -1;
+    public static boolean condition2(int target) {
+        int r = (int) Math.log10(target) + 1; // 자릿수
+        for (int i = 0; i < r; i++) {
+            int a = (int) (target / Math.pow(10,i)) % 10;
+            if (a == 3 || a == 6 || a == 9) {
+                return true;
+            }
+        }
+        return false;
     }
 }
