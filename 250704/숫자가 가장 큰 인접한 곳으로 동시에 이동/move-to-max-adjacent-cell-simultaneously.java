@@ -45,7 +45,7 @@ public class Main {
         int origin = grid[x][y];
 
         int maxX = x, maxY = y;
-        int max = origin;
+        int max = 0;
         for (int i = 0; i < 4; i++) {
             int nextX = x + dx[i];
             int nextY = y + dy[i];
@@ -79,7 +79,6 @@ public class Main {
     public static void moveMarbles() {
         int marbleCount = 0;
         int[][] nextGrid = getNextGrid();
-
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 int count = nextGrid[i][j];
