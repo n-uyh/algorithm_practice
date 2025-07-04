@@ -28,7 +28,7 @@ public class Main {
 
     // 인덱스가 그리드 내부에 있는지 확인
     public static boolean isInGrid(int r, int c) {
-        return r < n && r >= 0 && c < n && c >= 0;
+        return r <= n && r > 0 && c <= n && c > 0;
     }
 
 
@@ -36,7 +36,7 @@ public class Main {
     public static boolean isBigThanCurrentCell(int direction) {
         int nextX = r + dr[direction];
         int nextY = c + dc[direction];
-
+        
         if (isInGrid(nextX, nextY)) {
             boolean result = grid[nextX][nextY] > grid[r][c];
             if (result) {
