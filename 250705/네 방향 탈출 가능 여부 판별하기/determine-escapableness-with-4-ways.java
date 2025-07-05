@@ -1,9 +1,9 @@
 import java.util.*;
 public class Main {
 
-    // 상하좌우로 이동
-    static int[] dx = {-1,1,0,0};
-    static int[] dy = {0,0,-1,1};
+    // 우하상좌로 이동
+    static int[] dx = {0,1,-1,0};
+    static int[] dy = {1,0,0,1};
 
     static int n, m;
     static int[][] grid;
