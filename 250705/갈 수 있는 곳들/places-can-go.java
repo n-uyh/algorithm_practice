@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 public class Main {
 
     static int n, k;
@@ -9,20 +10,25 @@ public class Main {
     static int[][] grid, starts;
     static boolean[][][] visited;
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        n = sc.nextInt(); // 격자 크기
-        k = sc.nextInt(); // 시작점 개수
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        n = Integer.parseInt(st.nextToken()); // 격자 크기
+        k = Integer.parseInt(st.nextToken()); // 시작점 개수
 
         grid = new int[n][n];
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++) {
+            st = new StringTokenizer(br.readLine());
             for (int j = 0; j < n; j++)
-                grid[i][j] = sc.nextInt(); // 0: 이동 가능, 1: 이동 불가
+                grid[i][j] = Integer.parseInt(st.nextToken()); // 0: 이동 가능, 1: 이동 불가
+        }
 
         starts = new int[k][2];
         for (int i = 0; i < k; i++) {
-            starts[i][0] = sc.nextInt() - 1;
-            starts[i][1] = sc.nextInt() - 1;
+            st = new StringTokenizer(br.readLine());
+            starts[i][0] = Integer.parseInt(st.nextToken()) - 1;
+            starts[i][1] = Integer.parseInt(st.nextToken()) - 1;
         }
 
         visited = new boolean[k][n][n];
@@ -36,6 +42,7 @@ public class Main {
 
     public static int countVisited() {
         int count = 0;
+
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 for (int p = 0; p < k; p++) {
