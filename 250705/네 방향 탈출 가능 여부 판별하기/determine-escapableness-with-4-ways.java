@@ -34,7 +34,7 @@ public class Main {
 
         while (!q.isEmpty()) {
             int[] c = q.poll();
-            if (c[0] == n - 1 && c[1] == n -1) return 1;
+            if (c[0] == n - 1 && c[1] == m - 1) return 1;
 
             // 상하좌우 탐색
             for (int i = 0; i < 4; i++) {
