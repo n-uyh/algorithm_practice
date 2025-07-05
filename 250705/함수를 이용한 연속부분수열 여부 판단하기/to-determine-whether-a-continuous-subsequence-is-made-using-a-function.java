@@ -25,7 +25,7 @@ public class Main {
 
     public static boolean checkB(int[] a, int[] b, int aIndex, int bIndex) {
         if (a[aIndex] == b[bIndex]) {
-            return bIndex == b.length - 1 || checkB(a, b, aIndex+1, bIndex+1);
+            return bIndex == b.length - 1 || (aIndex+1 < a.length && checkB(a, b, aIndex+1, bIndex+1));
         }
         return false;
     }
