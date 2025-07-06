@@ -27,11 +27,6 @@ public class Main {
         return max;
     }
 
-    public static boolean inRange(int x, int y) {
-        return 0 <= x && x < n 
-            && 0 <= y && y < n;
-    }
-
     public static int countCoin(int x, int y) {
         int count = 0;
         for (int i = x; i <= x+2; i++) {
