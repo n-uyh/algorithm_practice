@@ -42,7 +42,7 @@ public class Main {
     public static int countCoin(int x, int y) {
         int count = 0;
         for (int i = x; i <= x+2; i++) {
-            for (int j = y; j <= y+2; java++) {
+            for (int j = y; j <= y+2; j++) {
                 if (grid[i][j] == 1)
                     count++;   
             }
