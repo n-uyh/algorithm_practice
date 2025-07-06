@@ -19,11 +19,8 @@ public class Main {
 
     public static int searchMaxCoin() {
         int max = 0;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (!validSubGrid(i,j)) 
-                    continue;
-                
+        for (int i = 0; i < n - 2; i++) {
+            for (int j = 0; j < n - 2; j++) {
                 max = Math.max(max,countCoin(i,j));
             }
         }
@@ -35,27 +32,13 @@ public class Main {
             && 0 <= y && y < n;
     }
 
-    public static boolean validSubGrid(int x, int y) {
-        return inRange(x,y) && inRange(x,y+2) && inRange(x+2,y) && inRange(x+2,y+2);
-    }
-
     public static int countCoin(int x, int y) {
         int count = 0;
         for (int i = x; i <= x+2; i++) {
             for (int j = y; j <= y+2; j++) {
-                if (grid[i][j] == 1)
-                    count++;   
+                count += grid[i][j];
             }
         }
         return count;
-    }
-}
-
-class Point {
-    int x;
-    int y;
-    public Point(int x, int y) {
-        this.x = x;
-        this.y = y;
     }
 }
