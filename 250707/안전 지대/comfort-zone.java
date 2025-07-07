@@ -16,7 +16,7 @@ public class Main {
 
        
         int max_safe = 0;
-        int max_safe_k = 0;
+        int max_safe_k = 1;
         for (int k = 1; k < 100; k++) {
             visited = new int[n][m];
             safe = 0;
