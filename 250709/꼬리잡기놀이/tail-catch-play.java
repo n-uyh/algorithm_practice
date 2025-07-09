@@ -80,7 +80,7 @@ public class Main {
                 team.add(p);
                 team.add(np);
                 buildTeam(team, np);
-            } else if (np.grid() == 2 || np.grid() == 3) {
+            } else if (p.grid() != 1 && (np.grid() == 2 || np.grid() == 3)) {
                 team.add(np);
                 buildTeam(team, np);
             }
