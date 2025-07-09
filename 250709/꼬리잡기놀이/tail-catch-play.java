@@ -25,6 +25,10 @@ public class Main {
             return new Pair(x+dx[d], y+dy[d]);
         }
 
+        public Pair newPair(int r, int c) {
+            return new Pair(x + r, y + c);
+        }
+
         public int grid() {
             return grid[x][y];
         }
@@ -39,8 +43,8 @@ public class Main {
             return this;
         }
 
-        public void print() {
-            System.out.printf("(%d, %d)", x, y);
+        public boolean equals(Pair p) {
+            return this.x == p.x && this.y == p.y;
         }
     }
 
@@ -98,6 +102,7 @@ public class Main {
             grid[newHead.x][newHead.y] = 1;
             grid[last.x][last.y] = 4;
         }
+        teams = newTeam;
     }
 
     public static int throwBall(int round) {
@@ -105,28 +110,34 @@ public class Main {
         round %= (4*n);
 
         Pair start;
-        int dir;
+        int dx, dy;
         if (round <= n) {
             start = new Pair(round-1,0);
-            dir = 0;
+            dx = 0; dy = 1; // 우
         } else if (n < round && round <= 2*n) {
-            start = new Pair(round-n,round-n);
-            dir = 1;
+            start = new Pair(round-n-1,round-n-1);
+            dx = -1; dy = 0; // 상
         } else if (2*n < round && round <= 3*n) {
             start = new Pair(3*n-round,n-1);
-            dir = 2;
+            dx = 0; dy = -1; // 좌
         } else {
             start = new Pair(0,4*n-round);
-            dir = 3;
+            dx = 1; dy = 0; // 하
         }
 
         // 최초로 만나는 사람
         for (int i = 0; i < n; i++) {
-            Pair cell = start.newPair(i);
+            Pair cell = start.newPair(dx * i, dy * i);
             if (cell.inRange() && cell.grid() == 1) { // 사람인 경우
-                // 점수계산
-                cell.print();
-                break;
+                // 점수계산 -> 몇번째 사람인지?
+                for (List<Pair> team : teams) {
+                    for (int t = 0; t < team.size(); t++) {
+                        if (cell.equals(team.get(t))) {
+                            Collections.reverse(team);
+                            return (t+1) * (t+1);
+                        }
+                    }
+                }
             }
         }
 
@@ -158,7 +169,7 @@ public class Main {
 
         int score = 0;
         // 라운드 k번 반복
-        for (int r = 0; r < k; r++) { 
+        for (int r = 1; r <= k; r++) { 
             // 팀별 이동
             moveTeams();
 
@@ -166,23 +177,6 @@ public class Main {
             score += throwBall(r);
         }
         System.out.print(score);
-    }
-
-    public static void printTeam(List<Pair> team) {
-        System.out.print("[");
-        for (Pair p : team) {
-            p.print();
-        }
-        System.out.print("]");
-    }
-
-    public static void printGrid() {
-        for (int[] r : grid) {
-            for (int c : r) {
-                System.out.print(c + " ");
-            }
-            System.out.println();
-        }
     }
 
 }
