@@ -35,6 +35,7 @@ public class Main {
             cloneTreeAll(i);
             // 제초제 뿌리기 (가장많이 박멸칸 판단, 제초제 그리드 채우기)
             count += setTreeKiller(i);
+
         }
 
         System.out.print(count);
@@ -113,7 +114,7 @@ public class Main {
 
     // 해당칸에 제초제가 남아있는지 판별
     public static boolean isKiller(int year, int r, int c) {
-        return 0 < killers[r][c] && killers[r][c] <= year;
+        return killers[r][c] >= year;
     }
 
 
@@ -160,6 +161,7 @@ public class Main {
 
     public static void spray(int x, int y, int year) {
         grid[x][y] = 0;
+        killers[x][y] = year + c;
         for (int i = 0; i < 4; i++) {
             for (int j = 1; j <= k; j++) {
                 int nx = x + dx[i] * j;
@@ -180,4 +182,5 @@ public class Main {
         return 0 <= r && r < n
             && 0 <= c && c < n;
     }
+
 }
