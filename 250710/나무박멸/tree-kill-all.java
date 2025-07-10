@@ -167,9 +167,13 @@ public class Main {
                 int nx = x + dx[i] * j;
                 int ny = y + dy[i] * j;
 
-                if (inRange(nx,ny) && grid[nx][ny] > 0) {
-                    grid[nx][ny] = 0;
+                if (inRange(nx,ny)) {
                     killers[nx][ny] = year + c;
+                    if (grid[nx][ny] > 0) {
+                        grid[nx][ny] = 0;
+                    } else {
+                        break;
+                    }
                 } else {
                     break;
                 }
