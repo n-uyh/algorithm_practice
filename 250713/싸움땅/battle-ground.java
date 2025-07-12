@@ -188,8 +188,10 @@ public class Main {
 
             loser.x = nx;
             loser.y = ny;
+            loser.d = d;
             break;
         }
+        loser.chooseGun();
     }
 
 
