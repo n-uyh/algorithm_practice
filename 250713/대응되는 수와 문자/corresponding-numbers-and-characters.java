@@ -5,20 +5,18 @@ public class Main {
         int n = sc.nextInt();
         int m = sc.nextInt();
         String[] words = new String[n + 1];
+        Map<String,Integer> map = new HashMap<>();
         for (int i = 1; i <= n; i++) {
             words[i] = sc.next();
+            map.put(words[i],i);
         }
 
         for (int i = 0; i < m; i++) {
             String target = sc.next();
             if (target.matches("\\d+")) {
-                int index = Integer.parseInt(target);
-                System.out.println(words[index]);
+                System.out.println(words[Integer.parseInt(target)]);
             } else {
-                for (int j = 1; j <= n; j++) {
-                    if (target.equals(words[j]))
-                        System.out.println(j);
-                }
+                System.out.println(map.get(target));
             }
         }
     }
