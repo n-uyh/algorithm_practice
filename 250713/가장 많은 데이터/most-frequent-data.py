@@ -10,7 +10,6 @@ for w in words:
     else:
         counts[w] = 1
     
-    if counts[w] > max_count:
-        max_count = counts[w]
+    max_count = max(max_count,counts[w])
 
 print(max_count)
