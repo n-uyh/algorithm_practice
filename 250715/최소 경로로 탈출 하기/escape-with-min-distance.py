@@ -24,10 +24,11 @@ def bfs():
         for i in range(4):
             nx = x + dxy[i][0]
             ny = y + dxy[i][1]
-            if (in_range(nx,ny) and visited[nx][ny] == 0 and grid[nx][ny] == 1):
+            if (in_range(nx,ny) and visited[nx][ny] == 0):
                 visited[nx][ny] = 1
-                dist[nx][ny] = dist[x][y] + 1
-                queue.append((nx,ny))
+                if (grid[nx][ny] == 1):
+                    dist[nx][ny] = dist[x][y] + 1
+                    queue.append((nx,ny))
             
 
 
