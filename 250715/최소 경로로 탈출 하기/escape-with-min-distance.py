@@ -8,14 +8,14 @@ grid = [list(map(int, input().split())) for _ in range(n)]
 dxy = [(-1,0),(1,0),(0,-1),(0,1)]
 
 visited = [
-    [0 for _ in range(n)] for _ in range(n)
+    [0 for _ in range(m)] for _ in range(n)
 ]
 dist = [
-    [-1 for _ in range(n)] for _ in range(n)
+    [-1 for _ in range(m)] for _ in range(n)
 ]
 
 def in_range(x, y):
-    return 0 <= x < n and 0 <= y < n
+    return 0 <= x < n and 0 <= y < m
 
 def bfs():
     while queue:
@@ -24,14 +24,11 @@ def bfs():
         for i in range(4):
             nx = x + dxy[i][0]
             ny = y + dxy[i][1]
-            if (in_range(nx,ny) and visited[nx][ny] == 0):
+            if (in_range(nx,ny) and visited[nx][ny] == 0 and grid[nx][ny] == 1):
                 visited[nx][ny] = 1
-                if (grid[nx][ny] == 1):
-                    dist[nx][ny] = dist[x][y] + 1
-                    queue.append((nx,ny))
+                dist[nx][ny] = dist[x][y] + 1
+                queue.append((nx,ny))
             
-
-
 
 def main():
     visited[0][0] = 1
