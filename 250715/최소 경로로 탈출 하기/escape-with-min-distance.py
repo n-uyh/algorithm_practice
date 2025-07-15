@@ -35,6 +35,6 @@ def main():
     dist[0][0] = 0
     queue.append((0,0))
     bfs()
-    print(dist[n-1][n-1])
+    print(dist[n-1][m-1])
 
 main()
