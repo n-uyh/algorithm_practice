@@ -11,36 +11,35 @@ class Node:
 
 def removeNode(i):
     node = n_arr[i]
-    if node.prev:
+    if node.prev is not None:
         node.prev.next = node.next
-        node.prev = None
-    if node.next:
+    if node.next is not None:
         node.next.prev = node.prev
-        node.next = None
+
+    node.prev = node.next = None
 
 def insert_front(i, j):
     back = n_arr[i]
     front = n_arr[j]
 
-
-    if back.prev:
-        back.prev.next = front
-
-    front.next = back
     front.prev = back.prev
-    back.prev = front
+    front.next = back
+    if front.prev is not None:
+        front.prev.next = front
+    if front.next is not None:
+        front.next.prev = front
     
 
 def insert_back(i, j):
     front = n_arr[i]
     back = n_arr[j]
 
-    if front.next:
-        front.next.prev = back
-
     back.prev = front
     back.next = front.next
-    front.next = back
+    if back.prev is not None:
+        back.prev.next = back
+    if back.next is not None:
+        back.next.prev = back
 
 def prev_next_id(i):
     cur = n_arr[i]
@@ -68,7 +67,7 @@ for i in range(N+1):
     n_arr[i] = Node(i)
 
 # 질의
-for _ in range(Q):
+for i in range(Q):
     q = list(map(int, input().split()))
     if q[0] == 1:
         removeNode(q[1])
